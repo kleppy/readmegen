@@ -1,0 +1,22 @@
+{
+  "name": "readmegen",
+  "version": "1.0.0",
+  "description": "this is a readme generator ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kleppy/readmegen.git"
+  },
+  "author": "kleppy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kleppy/readmegen/issues"
+  },
+  "homepage": "https://github.com/kleppy/readmegen#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
