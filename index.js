@@ -74,7 +74,7 @@ inquirer
   ])
 
   .then((response) => {
-  fs.writeFile('README.md', `#${response.title} \n##Description \n${response.description} \n#Instalation \n ${response.installation} \n#Usage \n  ${response.usage} \n#Contribution \n ${response.contrib} \n #Testing \n ${response.testing}`, (err) =>
+  fs.writeFile('README.md', `#${response.title} \n##Description \n${response.description} \n#Instalation \n${response.installation} \n#Usage \n${response.usage} \n#Contribution \n${response.contrib} \n#Testing \n${response.testing}`, (err) =>
     err ? console.error(err) : console.log('Success!'))
 }
   );
