@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+// create inquirer prompts with error validation.
 inquirer
   .prompt([
     {
@@ -74,6 +74,7 @@ inquirer
   ])
 
   .then((response) => {
+// output requires newlines between sections. 
   fs.writeFile('./files/README.md', `#${response.title} \n##Description \n${response.description} \n##Instalation \n${response.installation} \n##Usage \n${response.usage} \n##Contribution \n${response.contrib} \n##Testing \n${response.testing}`, (err) =>
     err ? console.error(err) : console.log('Success!'))
 }
