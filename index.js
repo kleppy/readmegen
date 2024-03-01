@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const tableContents = "(#title)\n(#description)\n(#installation)\n(#usage)\n(#testing)\n(#contributions)\n(#questions)"
 // create inquirer prompts with error validation.
 inquirer
   .prompt([
@@ -71,11 +72,36 @@ inquirer
       },
     },
 
+  {
+        type: 'input',
+        message: 'what is your email address??',
+        name: 'email',
+        validate: function (resp) {
+            if (resp.length < 1) {
+                return console.log("Email needs to be added");
+            }
+            return true;
+      },
+    },
+
+  {
+        type: 'input',
+        message: 'what is your github username?',
+        name: 'github',
+        validate: function (resp) {
+            if (resp.length < 1) {
+                return console.log("Github username needs to be added");
+            }
+            return true;
+      },
+    },
+
+
   ])
 
   .then((response) => {
 // output requires newlines between sections. 
-  fs.writeFile('./files/README.md', `#${response.title} \n##Description \n${response.description} \n##Instalation \n${response.installation} \n##Usage \n${response.usage} \n##Contribution \n${response.contrib} \n##Testing \n${response.testing}`, (err) =>
+  fs.writeFile('./files/README.md', `${tableContents}\n#Title \n${response.title} \n##Description \n${response.description} \n##Instalation \n${response.installation} \n##Usage \n${response.usage} \n##Contribution \n${response.contrib} \n##Testing \n${response.testing} \n##Questions \n ${response.email} \n (github.com/${response.github}`, (err) =>
     err ? console.error(err) : console.log('Success!'))
 }
   );
