@@ -14,7 +14,7 @@ You're going to want to go ahead and clone the repo, then run node index.js. Whe
 ##
 Link: https://kleppy.github.io/readmegen/
 
-https://drive.google.com/file/d/12X2WsLWO7l_4r6fLSO8JJ9aKuCQgWvSj/view
+https://drive.google.com/file/d/1GM3Migy1dbrEAy9AJwEj9OonAQmMY2_b/view
 ## License
 
 Please refer to the LICENSE in the repo.1G
