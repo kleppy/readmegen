@@ -1,9 +1,15 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const tableContents = "(#title)\n(#description)\n(#installation)\n(#usage)\n(#testing)\n(#contributions)\n(#questions)"
+const createReadme = require("./scripts/createReadme")
+const util = require("util");
+const writeFileAsync = util.promisify(fs.writeFile);
+
+
+//const tableContents = "(#title)\n(#description)\n(#installation)\n(#usage)\n(#testing)\n(#contributions)\n(#questions)"
 // create inquirer prompts with error validation.
-inquirer
-  .prompt([
+
+function promptUser() {
+    return inquirer.prompt([
     {
       type: 'input',
       message: 'What is the title of your repository?',
@@ -95,14 +101,47 @@ inquirer
             return true;
       },
     },
+    {
+        type: "list",
+        name: "license",
+        message: "Chose the appropriate license for this project: ",
+        choices: [
+            "Apache",
+            "Academic",
+            "GNU",
+            "ISC",
+            "MIT",
+            "Mozilla",
+            "Open"
+        ]}
+    
 
-
-  ])
-
-  .then((response) => {
-// output requires newlines between sections. 
-  fs.writeFile('./files/README.md', `${tableContents}\n#Title \n${response.title} \n##Description \n${response.description} \n##Instalation \n${response.installation} \n##Usage \n${response.usage} \n##Contribution \n${response.contrib} \n##Testing \n${response.testing} \n##Questions \n ${response.email} \n (github.com/${response.github}`, (err) =>
-    err ? console.error(err) : console.log('Success!'))
+  ]);
 }
-  );
+  // Async function using util.promisify 
+  async function init() {
+    try {
+        // Ask user questions and generate responses
+        const answers = await promptUser();
+        const generateContent = createReadme(answers);
+        // Write new README.md to dist directory
+        await writeFileAsync('./files/README.md', generateContent);
+        console.log('✔️ wrote to README.md');
+    }   catch(err) {
+        console.log(err);
+    }
+  }
+
+
+  
+init();  
+
+
+
+ // .then((response) => {
+// output requires newlines between sections. 
+ // fs.appendFile('./files/README.md', `${tableContents}\n#Title \n${response.title} \n##Description \n${response.description} \n##Instalation \n${response.installation} \n##Usage \n${response.usage} \n##Contribution \n${response.contrib} \n##Testing \n${response.testing} \n##Questions \n ${response.email} \n (github.com/${response.github}`, (err) =>
+ //   err ? console.error(err) : console.log('Success!'))
+//}
+ // );
   
