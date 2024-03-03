@@ -1,7 +1,7 @@
 // generateReadme function populating the README.md
 function createReadme(answers) {
     return `
-<h1 align="center">${answers.projectTitle} 👋</h1>
+<h1 align="center">${answers.title} 👋</h1>
   
 ![badge](https://img.shields.io/badge/license-${answers.license}-brightgreen)<br />
 
